@@ -1,4 +1,4 @@
-# repanalysis
+# rep-analysis
 
 ## Project setup
 ```
