@@ -8,7 +8,7 @@
   </nav>
   <div class="content">
     <div class="wrapper">
-      <apexchart width="500" type="line" :options="options" :series="series"></apexchart>
+      <apexchart width="600" type="line" :options="options" :series="series"></apexchart>
 
       <h1 style="text-align: center; margin-top: 3rem;">Tweets</h1>
 
@@ -45,6 +45,29 @@
             83% negativo
           </div>
         </div>
+
+        <div class="card">
+          <div class="badge">
+            4
+          </div>
+          <p>Lorem ipsum, <mark>dolor</mark> sit amet consectetur adipisicing elit. <mark>Eligendi</mark> ratione error ea. Dolore necessitatibus quis labore rerum ex commodi, <mark>sunt doloribus ea</mark>, atque, aliquid fuga sit animi. Ex, recusandae animi.</p>
+
+          <div class="score">
+            83% negativo
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="badge">
+            5
+          </div>
+          <p>Lorem ipsum, <mark>dolor</mark> sit amet consectetur adipisicing elit. <mark>Eligendi</mark> ratione error ea. Dolore necessitatibus quis labore rerum ex commodi, <mark>sunt doloribus ea</mark>, atque, aliquid fuga sit animi. Ex, recusandae animi.</p>
+
+          <div class="score">
+            83% negativo
+          </div>
+        </div>
+
       </div>
       
     </div>
@@ -69,6 +92,9 @@ export default {
   data: function() {
     return {
       options: {
+        markers: {
+            size: 5,
+        },
         stroke: {
           curve: 'smooth',
         },
@@ -82,6 +108,22 @@ export default {
         colors: ['#08f26e', '#cccccc', '#f7345e'],
         grid: {
           show: false
+        },
+        yaxis: {
+          title: {
+            text: "Quantidade de Tweets",
+            style: {
+              fontSize: '14px',
+            }
+          }
+        },
+        xaxis: {
+          title: {
+            text: "Tempo",
+            style: {
+              fontSize: '14px',
+            }
+          }
         },
       },
       series: [
