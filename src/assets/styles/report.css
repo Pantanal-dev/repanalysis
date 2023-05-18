@@ -15,10 +15,22 @@ html, body {
     grid-template-columns: 100%;
 }
 
+.wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
 .header {
     background-color: #ffffff;
-    box-shadow: 5px 5px 100px rgba(0, 0, 0, 0.1);
+    box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4rem;
     padding: 1rem 0;
+}
+
+.header .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header .logo {
@@ -29,7 +41,72 @@ html, body {
 .header a {
     display: block;
     width: max-content;
-    margin: 0 auto;
+}
+
+.header .right-header {
+    display: flex;
+}
+
+.header .right-header-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+.header .right-header-text small {
+    color: #909090;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 700;
+}
+
+.header .company-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    box-shadow: 5px 5px 50px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.header .pulsing-circle {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    width: 15px;
+    height: 15px;
+}
+
+.header .pulsing-circle:before {
+    content: '';
+    position: relative;
+    display: block;
+    width: 300%;
+    height: 300%;
+    box-sizing: border-box;
+    margin-left: -100%;
+    margin-top: -100%;
+    border-radius: 50%;
+    background-color: #ff7e82;
+    animation: pulse-ring 1.25s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+.header .pulsing-circle::after {
+    content: '';
+    position: absolute;
+    left: 0; 
+    top: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    background-color: #f7345e;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0,0,0,.3);
 }
 
 .content {
@@ -43,8 +120,32 @@ html, body {
     width: 100%;
 }
 
+.content .realtime-charts {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
 .content #apexchartsrealtime-chart {
     margin: auto;
+}
+
+.content .details {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.content .tweets {
+    width: 50%;
+}
+
+.content .words-charts {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .content .card {
@@ -58,6 +159,7 @@ html, body {
     width: 75%;
     margin: 3rem auto;
     position: relative;
+    font-size: 14px;
 }
 
 .content .card .badge {
@@ -81,7 +183,7 @@ html, body {
 
 .content .card .score {
     text-transform: uppercase;
-    font-size: 14px;
+    font-size: 12px;
     background-color: #feeaef;
     padding: .5rem 1rem;
     width: max-content;
@@ -100,7 +202,23 @@ html, body {
     margin-top: 2rem;
 }
 
-.wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-}
+@keyframes pulse-ring {
+    0% {
+      transform: scale(.33);
+    }
+    80%, 100% {
+      opacity: 0;
+    }
+  }
+  
+  @keyframes pulse-dot {
+    0% {
+      transform: scale(.8);
+    }
+    50% {
+      transform: scale(1);
+    }
+    100% {
+      transform: scale(.8);
+    }
+  }
