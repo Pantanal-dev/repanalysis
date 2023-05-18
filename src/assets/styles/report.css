@@ -12,7 +12,7 @@ body {
     height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
-    grid-template-columns: 100%;
+    grid-template-columns: 1fr;
 }
 
 .header {
@@ -34,6 +34,59 @@ body {
 
 .content {
     background-color: #ffffff;
+    width: 100%;
+}
+
+.content .wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.content #apexchartsrealtime-chart {
+    margin: auto;
+}
+
+.content .card {
+    padding: 1rem 2rem;
+    box-shadow: 10px 10px 100px rgba(0, 0, 0, 0.1);
+    border-radius: .75rem;
+    line-height: 1.5;
+    text-align: justify;
+    width: 75%;
+    margin: 3rem auto;
+    display: block;
+    position: relative;
+}
+
+.content .card .badge {
+    position: absolute;
+    background-color: #cccccc;
+    width: 50px;
+    height: 50px;
+    top: -1.5rem;
+    left: -1.5rem;
+    color: #ffffff;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 24px;
+    line-height: 50px;
+    font-weight: 700;
+}
+
+.content .card mark {
+    background-color: #feeaef;
+}
+
+.content .card .score {
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #feeaef;
+    padding: .5rem 1rem;
+    width: max-content;
+    border-radius: .5rem;
+    color: #f7345e;
+    font-weight: 700;
 }
 
 .footer {
@@ -42,6 +95,7 @@ body {
     text-align: center;
     font-weight: 700;
     padding: 1rem 0;
+    border-radius: 2rem 2rem 0 0;
 }
 
 .wrapper {
