@@ -1,7 +1,7 @@
 <template>
   <img src="@/assets/images/logo.png" alt="Rep Analysis Logo" class="logo">
 
-  <form class="search" method="get" action="/report/dell">
+  <form class="search" method="get" action="/report/netflix">
     <input type="text" class="search-field" placeholder="Qual empresa gostaria de analisar?" spellcheck="false" v-model="tweet">
 
     <div class="search-button-wrapper">
