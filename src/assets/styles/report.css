@@ -181,15 +181,87 @@ html, body {
     background-color: #feeaef;
 }
 
-.content .card .score {
+.content .card .score--negative {
     text-transform: uppercase;
-    font-size: 12px;
+    font-size: 14px;
     background-color: #feeaef;
     padding: .5rem 1rem;
     width: max-content;
     border-radius: .5rem;
     color: #f7345e;
     font-weight: 700;
+}
+
+.content .card .score--positive {
+    text-transform: uppercase;
+    font-size: 14px;
+    background-color: #e5faf6;
+    padding: .5rem 1rem;
+    width: max-content;
+    border-radius: .5rem;
+    color: #46CF76;
+    font-weight: 700;
+}
+
+.content .nav-tab {
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid #ccc;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin: auto;
+}
+
+.content .nav-tab-item {
+    width: 45%;
+    text-align: center;
+    border-radius: 1rem;
+    padding: 1.25rem .5rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.content .nav-tab-item--positive {
+    background-color: #e5faf6;
+    border: 1px solid #46CF76;
+    color: #46CF76;
+}
+
+.content .nav-tab-item--negative {
+    background-color: #feeaef;
+    color: #f7345e;
+    border: 1px solid #f7345e;
+}
+
+.content .nav-tab-item--inactive {
+    background-color: #ffffff;
+    color: #545454;
+    border: none;
+}
+
+.content .nav-tab-item--negative a {
+    color: #f7345e;
+}
+
+.content .nav-tab-item button {
+    display: block;
+    width: 100%;
+    height: 100%;    
+}
+
+.loading-tweets {
+    width: 90%;
+    border: 1px solid #ccc;
+    padding: .5rem;
+    border-radius: .5rem;
+    margin: 1rem auto 0;
+    padding: 1rem 0;
+    text-align: center;
+    color: #545454;
 }
 
 .footer {

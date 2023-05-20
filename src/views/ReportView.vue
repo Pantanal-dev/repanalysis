@@ -31,18 +31,43 @@
             <vue-feather type="trending-up" class="trend-icon"></vue-feather>
             Tweets
           </h1>
-          
-          <div class="card" v-for="(tweet, index) in negativeTweets" :key="index">
-            <div class="badge">
-              {{ index + 1 }}
-            </div>
-            <p>{{ tweet.tweet_text }}</p>
 
-            <div class="score">
-              {{ tweet.score }} negativo
+          <div class="nav-tab">
+            <button @click.prevent="switchTab(0)" ref="btnNegative" class="nav-tab-item" :class="{ 'nav-tab-item--negative': showNegativeTweets, 'nav-tab-item--inactive': !showNegativeTweets }">
+              Negativo
+            </button>
+            <button @click.prevent="switchTab(1)" ref="btnPositive" class="nav-tab-item" :class="{ 'nav-tab-item--positive': showPositiveTweets, 'nav-tab-item--inactive': !showPositiveTweets }">
+              Positivo
+            </button>
+          </div>
+
+          <div class="nav-tab-negative" v-if="showNegativeTweets">
+            <div class="card" v-for="(tweet, index) in negativeTweets" :key="index">
+              <div class="badge">
+                {{ index + 1 }}
+              </div>
+              <p>{{ tweet.tweet_text }}</p>
+
+              <div class="score--negative">
+                {{ tweet.score }} negativo
+              </div>
             </div>
           </div>
 
+          <div class="nav-tab-positive" v-if="showPositiveTweets">
+            <div class="card" v-for="(tweet, index) in positiveTweets" :key="index">
+              <div class="badge">
+                {{ index + 1 }}
+              </div>
+              <p>{{ tweet.tweet_text }}</p>
+
+              <div class="score--positive">
+                {{ tweet.score }} positivo
+              </div>
+            </div>
+          </div>
+  
+          <div v-show="(negativeTweets.length == 0 && showNegativeTweets == true) || (positiveTweets.length == 0 && showPositiveTweets == true)" class="loading-tweets">Carregando...</div>
         </div>
 
         <div class="words-charts">
@@ -85,7 +110,13 @@ export default {
   data: function() {
     return {
       negativeTweets: [],
+      positiveTweets: [],
+      showNegativeTweets: true,
+      showPositiveTweets: false,
       optionsLine1: {
+        noData: {
+          text: "Carregando...",
+        },
         markers: {
             size: 5,
         },
@@ -149,6 +180,9 @@ export default {
       ],
       
       optionsBar1: {
+        noData: {
+          text: "Carregando...",
+        },
         chart: {
           fontFamily: 'Comfortaa, cursive',
           id: 'realtime-chart',
@@ -185,6 +219,9 @@ export default {
       ],
 
       optionsBar2: {
+        noData: {
+          text: "Carregando...",
+        },
         chart: {
           fontFamily: 'Comfortaa, cursive',
           id: 'realtime-chart',
@@ -221,6 +258,9 @@ export default {
       ],
 
       optionsDonut: {
+        noData: {
+          text: "Carregando...",
+        },
         chart: {
           fontFamily: 'Comfortaa, cursive',
           id: 'realtime-chart',
@@ -247,11 +287,22 @@ export default {
         "tweet" : tweets
       };
 
-      var url = "https://68f7-34-87-84-127.ngrok.io/predict";
+      var url = "https://4151-34-87-84-127.ngrok.io/predict";
       const info = await axios.post(url, json);
       var data = info.data;
 
       return data;
+    },
+    switchTab(e) {
+      if(e == 0) {
+        this.showNegativeTweets = true;
+        this.showPositiveTweets = false;
+      } else {
+        this.showNegativeTweets = false;
+        this.showPositiveTweets = true;
+      }
+      
+      
     }
   },
   mounted() {
@@ -4604,10 +4655,10 @@ export default {
           }]
         });
 
-        var newTweets = [];
+        var newNegTweets = [];
 
         for(let i = 0; i < response.negative_tweets.length; i++) {
-          newTweets.push(
+          newNegTweets.push(
             {
               "tweet_text": response.negative_tweets[i].tweet_text,
               "score": Math.round(response.negative_tweets[i].tweet_scores['Negativo'] * 100) + "%"
@@ -4615,7 +4666,22 @@ export default {
           );
         }
 
-        me.negativeTweets = newTweets;
+        me.negativeTweets = newNegTweets;
+
+        console.log(response);
+
+        var newPosTweets = [];
+
+        for(let i = 0; i < response.positive_tweets.length; i++) {
+          newPosTweets.push(
+            {
+              "tweet_text": response.positive_tweets[i].tweet_text,
+              "score": Math.round(response.positive_tweets[i].tweet_scores['Positivo'] * 100) + "%"
+            }
+          );
+        }
+
+        me.positiveTweets = newPosTweets;
 
         start = end;
         end += increment;
